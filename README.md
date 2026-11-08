@@ -20,6 +20,18 @@ Le site statique généré se trouve dans `dist/`.
 
 ## Déploiement Cloudflare
 
+### Cloudflare Workers
+
+Dans **Workers & Pages → votre Worker → Settings → Builds**, définissez la commande de déploiement sur `npm run deploy`. Le script construit d’abord `dist/`, puis lance Wrangler. Aucun build command séparé n’est nécessaire avec ce réglage.
+
+Pour déployer depuis un terminal local :
+
+```bash
+npm run deploy
+```
+
+Le `wrangler.toml` configure le Worker et ses assets statiques.
+
 ### Cloudflare Pages
 
 1. Connectez le dépôt Git dans **Workers & Pages → Create → Pages**.
@@ -29,15 +41,8 @@ Le site statique généré se trouve dans `dist/`.
 Déploiement Pages avec Wrangler :
 
 ```bash
+npm run build
 npx wrangler pages deploy dist --project-name ethone-devtools
-```
-
-### Cloudflare Workers
-
-Le `wrangler.toml` configure les assets statiques et le Worker. Après le build :
-
-```bash
-npx wrangler deploy
 ```
 
 ## Outils disponibles
